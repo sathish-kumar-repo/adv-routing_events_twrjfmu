@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useRouteLoaderData, redirect, defer, Await } from "react-router-dom";
+import { useRouteLoaderData, redirect, Await } from "react-router-dom";
 
 import EventItem from "../components/EventItem";
 import EventsList from "../components/EventsList";
@@ -63,10 +63,10 @@ async function loadEvents() {
 export async function loader({ request, params }) {
   const id = params.eventId;
 
-  return defer({
+  return {
     event: await loadEvent(id),
     events: loadEvents(),
-  });
+  };
 }
 
 export async function action({ params, request }) {
