@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Suspense } from "react";
 import { useRouteLoaderData, redirect, Await } from "react-router-dom";
 
@@ -9,11 +10,7 @@ function EventDetailPage() {
 
   return (
     <>
-      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
-        <Await resolve={event}>
-          {(loadedEvent) => <EventItem event={loadedEvent} />}
-        </Await>
-      </Suspense>
+      <EventItem event={event} />
       <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={events}>
           {(loadedEvents) => <EventsList events={loadedEvents} />}
@@ -60,6 +57,7 @@ async function loadEvents() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function loader({ request, params }) {
   const id = params.eventId;
 
